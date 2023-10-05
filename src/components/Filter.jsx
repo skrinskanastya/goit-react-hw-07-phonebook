@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { getFilter, setFilter } from 'redux/filterSlice';
+import { setFilter } from 'redux/filterSlice';
+import { selectStatusFilter } from 'redux/selectors';
 
 export const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(getFilter);
+  const filter = useSelector(selectStatusFilter);
 
-  const onChange = evt => {
-    dispatch(setFilter(evt.target.value));
+  const onChange = e => {
+    dispatch(setFilter(e.target.value));
   };
   return (
     <label>

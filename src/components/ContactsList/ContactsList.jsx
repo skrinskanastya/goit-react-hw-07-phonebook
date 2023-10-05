@@ -1,17 +1,22 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact, getContacts } from 'redux/contactsSlice';
-import { getFilter } from 'redux/filterSlice';
+import { deleteContact, fetchContacts } from 'redux/operations';
+import { selectContacts, selectStatusFilter } from 'redux/selectors';
 import { StyledBtn } from './ContactsList.styled';
+import { useEffect } from 'react';
 
 export const ContactsList = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
-  const filtered = useSelector(getFilter);
+  const contacts = useSelector(selectContacts);
+  const filtered = useSelector(selectStatusFilter);
 
   const normalizedFilter = filtered.toLowerCase();
   const filteredContacts = contacts.filter(({ name }) =>
     name.toLowerCase().includes(normalizedFilter)
   );
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <ul>

@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact, getContacts } from 'redux/contactsSlice';
 import { StyledBtn } from './ContactForm.styled';
+import { addContact } from 'redux/operations';
+import { selectContacts } from 'redux/selectors';
 
 export const ContactForm = () => {
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const [contactName, setcontactName] = useState('');
