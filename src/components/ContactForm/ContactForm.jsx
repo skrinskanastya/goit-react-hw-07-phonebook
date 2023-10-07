@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { StyledBtn } from './ContactForm.styled';
 import { addContact } from 'redux/operations';
@@ -21,7 +20,6 @@ export const ContactForm = () => {
     }
     dispatch(
       addContact({
-        id: nanoid(),
         name: contactName,
         number,
       })
